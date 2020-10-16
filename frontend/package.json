@@ -17,7 +17,8 @@
     "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "swiper": "^6.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
