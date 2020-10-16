@@ -1,10 +1,8 @@
 const express = require("express");
-const connectDB = require('./database/connect')
-// const apiRoutes = require("./routes");
+const connectDb = require('./database/connect');
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3001;
-// const favicon = require('serve-favicon');
 const logger = require('morgan');
 // const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -31,8 +29,6 @@ const connectDb = require("./database/connect");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -69,18 +65,7 @@ app.use('/auth', auth);
 app.use('/team', team);
 app.use('/user', user);
 
-// // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
 
-// Send every other request to the React app
-// Define any API routes before this runs
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
-// });
 connectDb();
 
 
