@@ -1,6 +1,5 @@
 import React from 'react';
 import AccountDetails from './AccountDetails';
-import AccountBookings from './AccountBookings';
 import SignInForm from '../Auth/SignInForm';
 
 class Account extends React.Component {
@@ -19,8 +18,6 @@ class Account extends React.Component {
         <h3><strong>Account Details</strong></h3>
         <AccountDetails currentUser={this.props.currentUser} />
         <hr />
-        <h3><strong>Bookings</strong></h3>
-        <AccountBookings currentUser={this.props.currentUser} />
       </div>
     )
   }

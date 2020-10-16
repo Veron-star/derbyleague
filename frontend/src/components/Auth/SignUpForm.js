@@ -4,9 +4,9 @@ import { Button, Form, Input, Panel } from 'muicss/react';
 import { Link } from 'react-router-dom';
 
 class UserRegistrationForm extends React.Component {
-  static propTypes = {
-    onUserSignedIn: PropTypes.func.isRequired
-  }
+  // static propTypes = {
+  //   onUserSignedIn: PropTypes.func.isRequired
+  // }
 
   constructor(props) {
     super(props)

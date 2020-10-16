@@ -32,10 +32,10 @@ const styles = {
     }
 }
 
-class SignInForm extends React.PureComponent {
-  static propTypes = {
-    onUserSignedIn: PropTypes.func.isRequired
-  }
+class SignInForm extends React.Component {
+  // static propTypes = {
+  //   onUserSignedIn: PropTypes.func.isRequired
+  // }
 
   constructor(props) {
     super(props)
