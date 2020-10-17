@@ -1,18 +1,39 @@
 import React from 'react';
 import '../../App.css';
+import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, IconButton } from "@material-ui/core";
+import { SortIcon } from "@material-ui/icons/Sort";
 
-const Header = (props) => {
+const useStyles = makeStyles((theme) => ({
+  appbar: {
+    background: "none",
+    fontFamily: "Nunito', sans-serif",
+  },
+  icon: {
+    color: "#fff",
+    fontSize: "3rem",
+  },
+  appbarTitle: {
+    flexGrow: "1",
+  },
+  appbarWrapper: {
+    width: "80%",
+    margin: "0 auto",
+  }
+}));
+
+export default function Header() {
+  const classes = useStyles();
   return (
-    <header id="header">
-      <div className="mui-appbar mui--appbar-line-height">
-        <div className="mui-container-fluid">
-          <a className="sidebar-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidebar">☰</a>
-          <a className="sidebar-toggle mui--hidden-xs mui--hidden-sm js-hide-sidebar"></a>
-          <span className="mui--text-title mui--visible-xs-inline-block">Athleta 24/7</span>
-        </div>
-      </div>
-    </header>
-  )
+    <div>
+      <AppBar className={classes.appbar} elevation={0}>
+        <ToolBar className={classes.appbarWrapper}>
+          <h1 className={classes.appbarTitle}>Derby League WA</h1>
+          <IconButton>
+            <SortIcon className={classes.icon} />
+          </IconButton>
+        </ToolBar>
+      </AppBar>
+    </div>
+  );
 }
-
-export default Header;

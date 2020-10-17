@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'muicss/react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
-import Swipe from "../Swiper/swiper";
+import Swipe from "../Swiper/Swiper";
 
 class Home extends React.Component {
   render() {
