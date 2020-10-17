@@ -68,11 +68,11 @@ export const NavMenu = styled.ul`
     }
 `;
 
-export const NavItem = style.li`
+export const NavItem = styled.li`
     height: 80px;
 `;
 
-export const NavLinkS = styled.address(LinkS)`
+export const NavLinkS = styled(LinkS)`
     color: #fff;
     display: flex;
     align-items: center;

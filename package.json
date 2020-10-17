@@ -9,8 +9,8 @@
     "start:dev": "concurrently \"nodemon --ignore 'frontend/*'\" \"npm run frontend\"",
     "frontend": "cd frontend && npm run start",
     "seed": "node database/seed/index.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
@@ -43,6 +43,8 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-smooth-scroll": "^0.1.0",
     "serve-favicon": "^2.5.0"
   }
 }
