@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FormButton, FormContent, FormInput, FormLabel, FormWrap, Container, Icon, Form, FormH1, Text } from './SigninElement'
 
 const SignIn = () => {

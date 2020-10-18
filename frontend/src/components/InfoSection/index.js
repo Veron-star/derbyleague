@@ -24,8 +24,7 @@ const InfoSection = ({lightBg, id, imgStart, topLine, headLine, lightText, darkT
                                 dark={dark ? 1 :0}
                                 dark2={dark2 ? 1 : 0}
                                 >{buttonLabel}</Button>
-                            </BtnWrap>    
-                        
+                            </BtnWrap>        
                     </TextWrapper>
                     </Column1>
                     <Column2>
@@ -38,6 +37,6 @@ const InfoSection = ({lightBg, id, imgStart, topLine, headLine, lightText, darkT
          </InfoContainer>
         </>
     )
-}
+};
 
 export default InfoSection;

@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Services from '../components/Services';
 import Footer from '../components/Footer';
+import SignUp from '../components/Signup';
 
 
 const Home = () => {
@@ -17,12 +18,14 @@ const Home = () => {
     return (
         <>
            <Sidebar isOpen={isOpen} toggle={toggle} />
-           <Navbar toggle={toggle} />
+           <Navbar />
            <HeroSection />
            <InfoSection {...homeObjOne} />
+           {/* <About /> */}
            <InfoSection {...homeObjTwo} />
            <Services />
            <InfoSection {...homeObjThree} />
+           <SignUp />
            <Footer />
         </>
     )

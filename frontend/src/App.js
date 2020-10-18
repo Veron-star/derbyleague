@@ -8,12 +8,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" components={Home} exact />
-        <Route path="/signin" components={SignInPage} exact />
+        <Route path="/" component={Home} exact />
+        <Route path="/signin" component={SignInPage} exact />
       </Switch>
-    </Router>
-    
-  )
+    </Router>  
+  );
   }
 
 
