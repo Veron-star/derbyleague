@@ -10,7 +10,7 @@ const onHover = () => {
 }
 
     return (
-        <HeroContainer>
+        <HeroContainer id="home">
             <HeroBg>
                 <VideoBg autoPlay loop muted src={Videos} type="Video/mp4" />               
             </HeroBg>
@@ -18,7 +18,7 @@ const onHover = () => {
                 <HeroH1>Never Trust 8 Wheels And A Smile</HeroH1>
                 <HeroP>Sign up for a new account today to find your local league and receive results from SCRIM!</HeroP>
                 <HeroBtnWrapper>
-                    <Button to="signup" onMouseEnter={onHover} onMouseLeave={onHover}>
+                    <Button to="signup" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true" smooth={true} duration={500} spy={true} exact="true" offset={-80} >
                         Let's Roll {hover ? <ArrowForward /> : <ArrowRight />}
                     </Button>
                 </HeroBtnWrapper>
