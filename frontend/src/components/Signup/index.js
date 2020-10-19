@@ -1,79 +1,40 @@
-import React, { Component } from 'react';
-import { Container, Form, FormH1, FormButton, FormContent, FormInput, FormLabel, FormWrap, Icon, FormSelect } from './SignupElement';
+import React from 'react';
+import useForm from "./useForm";
+import validate from "./validationInfo";
+import "./Form.css";
 
-class SignUp extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            firstName: "",
-            lastName: "",
-            password: "",
-            gender: "",
-        }
-        this.handleSubmit=this.handleSubmit.bind(this)
-    }
-    firsthandler = (event) => {
-        this.setState({
-            firstName: event.target.value
-        })
-    }
-    lasthandler = (event) => {
-        this.setState({
-            lastName: event.target.value
-        })
-    }
-    passwordhandler = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
-    genderhandler = (event) => {
-        this.setState({
-            gender: event.target.value
-        })
-    }
-    handleSubmit = (event) => {
-        alert(`${this.state.firstName} ${this.state.lastName}  Registered Successfully !!!!`)
-        console.log(this.state);
-        this.setState({
-            firstName: "",
-            lastName: "",
-            password: '',
-            gender: "",
-        })
-     event.preventDefault()    
-    };
 
-    render() {
-        return (
-            <>
-            <Container>
-                <FormWrap>
-                <Icon to="/">DERBY</Icon>
-                <FormContent>
-                <Form onSubmit={this.handleSubmit}>
-                    <FormH1>User Registration</FormH1>
-                    <FormLabel>FirstName :</FormLabel> 
-                    <FormInput type="text" value={this.state.firstName} onChange={this.firsthandler} placeholder="FirstName..." /><br />
-                    <FormLabel>LastName :</FormLabel> 
-                    <FormInput type="text" value={this.state.lastName} onChange={this.lasthandler} placeholder="LastName..." /><br />
-                    <FormLabel>Password :</FormLabel> 
-                    <FormInput type="password" value={this.state.password} onChange={this.passwordhandler} placeholder="Password..." /><br />
-                    <FormLabel>Gender :</FormLabel>
-                    <FormSelect onChange={this.genderhandler} defaultValue="Select Gender">
-                        <option defaultValue>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </FormSelect><br />
-                    <FormButton type="submit" value="Submit" />
-                </Form>
-                </FormContent>
-                </FormWrap>
-                </Container>
-            </>
-            
-        )
-    }
-};
+const SignUp = ({submitForm}) => {
+    const { handleChange, values, handleSubmit, errors } = useForm(validate, submitForm);
+    return (
+        <div className="form-content-right">
+            <form className="form" onClick={handleSubmit} noValidate>
+                <h1>Create An Account</h1>
+                <div className="form-inputs">
+                    <label className="form-label">USERNAME</label>
+                        <input id="username" type="text" name="usename" className="form-input" placeholder="Enter your usename" value={values.username} onChange={handleChange}/>
+                        {errors.username && <p>{errors.username}</p>}    
+                </div>
+                <div className="form-inputs">
+                    <label className="form-label">EMAIL</label>
+                        <input id="email" type="email" name="email" className="form-input" placeholder="Enter your email" value={values.email} onChange={handleChange}/>
+                        {errors.email && <p>{errors.email}</p>}       
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="password" className="form-label">PASSWORD</label>
+                        <input id="password" type="password" name="password" className="form-input" placeholder="Enter your password" value={values.password} onChange={handleChange}/>
+                        {errors.password && <p>{errors.password}</p>}       
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="password2" className="form-label">CONFIRM PASSWORD</label>
+                        <input id="password2" type="password2" name="password2" className="form-input" placeholder="Confirm your password" value={values.password2} onChange={handleChange}/>
+                        {errors.password2 && <p>{errors.password2}</p>}       
+                </div>
+                <button className="form-input-btn" type="submit">SUBMIT</button>
+                <span className="form-input-login">Already have an account? Login <a href="signin">here</a></span>
+            </form>
+        </div>
+    )
+}
 
 export default SignUp;

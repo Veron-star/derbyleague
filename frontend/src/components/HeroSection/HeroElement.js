@@ -7,7 +7,7 @@ export const HeroContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 30px;
-    height: 800px;
+    height: 1000px;
     position: relative;
     z-index: 1;
 
@@ -70,7 +70,7 @@ export const HeroH1 = styled.h1`
 export const HeroP = styled.p`
     margin-top: 24px;
     color: #fff;
-    font-size: 24px;
+    font-size: 26px;
     text-align: center;
     max-width: 600px;
 
@@ -83,7 +83,7 @@ export const HeroP = styled.p`
 `;
 
 export const HeroBtnWrapper = styled.div`
-    margin-top: 32px;
+    margin-top: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,11 +91,11 @@ export const HeroBtnWrapper = styled.div`
 
 export const ArrowForward = styled(MdArrowForward)`
     margin-left: 8px;
-    font-size: 20px;
+    font-size: 30px;
 `;
 
 export const ArrowRight = styled(MdKeyboardArrowRight)`
     margin-left: 8px;
-    font-size: 20px;
+    font-size: 30px;
 `;
 

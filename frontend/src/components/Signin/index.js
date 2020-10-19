@@ -8,7 +8,7 @@ const SignIn = () => {
             <FormWrap>
                 <Icon to="/">DERBY</Icon>
                     <FormContent>
-                        <Form action="#">
+                        <Form action="">
                             <FormH1>Sign In To Your Account</FormH1>
                             <FormLabel htmlFor="for">EMAIL</FormLabel>
                             <FormInput type="email" required />

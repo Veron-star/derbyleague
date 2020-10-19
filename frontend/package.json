@@ -20,13 +20,14 @@
     "react": "^16.14.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",
+    "react-hook": "0.0.1",
     "react-icons": "^3.11.0",
+    "react-map-gl": "^5.2.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-scroll": "^1.8.1",
     "react-smooth-scroll": "^0.1.0",
-    "styled-components": "^5.2.0",
-    "swiper": "^6.3.3"
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
