@@ -1,5 +1,5 @@
 const faker = require("faker");
-const User = require("./../../models/User");
+const User = require("../../models/User");
 
 async function seedData() {
     // delete everything inside db
