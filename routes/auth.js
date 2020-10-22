@@ -1,75 +1,25 @@
 const express = require('express');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const requireAuthorizedUser = require('../middleware/requireAuthorizedUser');
 
+// Controllers
+const authController = require('@controllers/auth');
+
+// App
 const router = express.Router();
 
-function whitelistUser({ email, firstName, lastName, contactNumber, _id, admin }) {
-  return { email, firstName, lastName, contactNumber, _id, admin };
-}
+// => POST /auth/register
+// Register user
+router.post('/register', authController.register);
 
-function makeTokenForUser(user) {
-  return jwt.sign(
-    { user: whitelistUser(user) },
-    process.env.TOKEN_SECRET,
-    {
-      subject: user._id.toString(),
-      expiresIn: '5 days'
-    }
-  );
-}
+// => POST /auth/login
+// Login a user
+router.post('/login', authController.login);
 
-// Sign in
-router.post('/signin',
-  passport.authenticate('local', { failWithError: true }),
-  function(req, res) {
-    const token = makeTokenForUser(req.user)
-    res.json({ token });
-  }
-);
+// => POST /auth/remind-password
+// Remind user's password - send a confirmation link
+router.post('/remind-password', authController.remindPassword);
 
-// Get current user’s info
-router.get('/',
-  requireAuthorizedUser,
-  function(req, res) {
-    const { user } = req;
-    if (user) {
-      res.json(whitelistUser(user));
-    } else {
-      res.status(401).json({ message: 'Please sign in' });
-    }
-  }
-);
-
-// Sign up
-router.post('/register', function(req, res, next) {
-  const { email, password, firstName, lastName, contactNumber } = req.body;
-  User.register(
-    new User({ email, firstName, lastName, contactNumber }),
-    password,
-    (err, user) => {
-      if (err) {
-        next(err);
-      } else {
-        const token = makeTokenForUser(user)
-        res.json({ token });
-      }
-    }
-  );
-});
-
-// Delete
-router.delete('/:id', requireAuthorizedUser, function(req, res, next) {
-  const { id } = req.params;
-  User.findByIdAndRemove(id)
-    .then(user => {
-      res.json(user);
-    })
-    .catch(err => {
-      res.json(err)
-    });
-});
+// => POST /auth/reset-password
+// Send user a new password
+router.post('/reset-password', authController.resetPassword);
 
 module.exports = router;

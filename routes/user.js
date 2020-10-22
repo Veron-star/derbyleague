@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// Controllers
+const usersCtrl = require('@controllers/users');
+
+// App
+const router = express.Router();
+
+// => GET /users/me
+// Get myself
+router.get('/me', usersCtrl.getMyself);
+
+// => PUT /users/me
+// Update myself
+router.put('/me', usersCtrl.updateMyself);
 
 module.exports = router;
