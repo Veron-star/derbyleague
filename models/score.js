@@ -33,6 +33,6 @@ const scoreSchema = new mongoose.Schema(
    }
 );
 
-const Account = mongoose.model('Score', scoreSchema);
+const Score = mongoose.model('Score', scoreSchema);
 
-module.exports = Account;
+module.exports = Score;

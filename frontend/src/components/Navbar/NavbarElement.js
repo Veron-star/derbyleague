@@ -5,11 +5,11 @@ import { Link as LinkS } from 'react-scroll';
 export const Nav = styled.nav`
     background: ${({scrollNav}) => (scrollNav ? "#000" : "transparent")};
     height: 80px;
-    margin-top: -110px;
+    margin-top: -140px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     position: sticky;
     top: 0;
     z-index: 8;
@@ -22,18 +22,18 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 80px;
+    height: 60px;
     z-index: 1;
     width: 100%;
     padding: -10px;
-    max-width: 1100px;
+    max-width: 1200px;
 `;
 
 export const NavLogo = styled(LinkR)`
-    color: #fff;
+    color: yellow;
     justify-self: flex-start;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     display: flex;
     align-items: center;
     margin-left: 24px;
@@ -101,7 +101,7 @@ export const NavBtnLink = styled(LinkR)`
     white-space: nowrap;
     padding: 10px 22px;
     color: #010606;
-    font-size: 20px;
+    font-size: 23px;
     outline: none;
     border: none;
     cursor: pointer;

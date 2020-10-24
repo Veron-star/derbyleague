@@ -1,6 +1,6 @@
 const connectDb = require('./../connect');
 const userSeeder = require('./seedUser');
-const teamSeeder = require('./seedTeam');
+const scoreSeeder = require('./seedScore');
 
 // connected to DB
 connectDb();
@@ -9,10 +9,10 @@ connectDb();
 async function seed(){
     // will run all the seeder files
 
-    await teamSeeder();
+    await scoreSeeder();
     await userSeeder();
 
 }
 
-seed()
+seed();
 

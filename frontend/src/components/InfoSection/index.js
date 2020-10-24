@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../ButtonElement';
-import { InfoContainer, InfoWrapper, InfoRow, TextWrapper, Column1, Column2, TopLine, Heading, Subtitle, BtnWrap, ImgWrap, Img } from './InfoElement';
+import { InfoContainer, InfoWrapper, InfoRow, TextWrapper, Column1, Column2, TopLine, Heading, Subtitle, BtnWrap1, ImgWrap, Img } from './InfoElement';
 
 const InfoSection = ({lightBg, id, imgStart, topLine, headLine, lightText, darkText, description, buttonLabel, img, alt, primary, dark, dark2}) => {
     return (
@@ -13,8 +13,8 @@ const InfoSection = ({lightBg, id, imgStart, topLine, headLine, lightText, darkT
                         <TopLine>{topLine}</TopLine>
                         <Heading lightText={lightText}>{headLine}</Heading>
                         <Subtitle darkText={darkText}>{description}</Subtitle>
-                            <BtnWrap>
-                                <Button to='home'
+                            <BtnWrap1>
+                                <Button to='leagues'
                                 smooth={true}
                                 duration={500}
                                 spy={true}
@@ -24,7 +24,7 @@ const InfoSection = ({lightBg, id, imgStart, topLine, headLine, lightText, darkT
                                 dark={dark ? 1 :0}
                                 dark2={dark2 ? 1 : 0}
                                 >{buttonLabel}</Button>
-                            </BtnWrap>        
+                            </BtnWrap1>        
                     </TextWrapper>
                     </Column1>
                     <Column2>

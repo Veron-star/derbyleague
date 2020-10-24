@@ -1,22 +1,22 @@
 const faker = require("faker");
-const Team = require("./../../models/Team");
+const Score = require("../../routes/score");
 
-async function seedData() {
+async function seedScore() {
     // delete everything inside db
-    Team.collection.deleteMany();
+    Score.collection.deleteMany();
 
     // for loop to generate X amount of records in my db
 
     for (let index = 0; index < 50; index++) {
     
-        const user = new Team({
+        const user = new Score({
             title: faker.company.companyName(),
             location: faker.address.city(),
             homepage: faker.internet.url(),
             timestamps: faker.date.recent(),
         })
     
-        Team.create(user)
+        Score.create(user)
         // user.save()
     }
 
@@ -24,4 +24,4 @@ async function seedData() {
 
 }
 
-module.exports = seedData;
+module.exports = seedScore;

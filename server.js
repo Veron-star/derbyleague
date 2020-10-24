@@ -1,74 +1,59 @@
-require('module-alias/register');
-const CONFIG = require('@config/config');
+const express = require("express");
 
-// Mongoose
-require('./db/mongoose');
-
-// Routes
-const authRouter = require('@routes/auth');
-const commonRouter = require('@routes/common');
-const usersRouter = require('@routes/users');
-const scoreRouter = require('@routes/score');
-const messageRouter = require('@routes/messages');
-
-// Others
-const express = require('express');
-const bodyParser = require('body-parser');
-const helmet = require('helmet');
-const compression = require('compression');
-const cors = require('cors');
-
-// Middlewares
-const auth = require('@middleware/auth');
-const errorHandler = require('@middleware/error-handler');
-
-// App
+const path = require("path");
 const app = express();
+const PORT = process.env.PORT || 3001;
+const logger = require('morgan');
 
-app.use(bodyParser.json({ limit: '5mb' }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(compression());
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
 
-// CORS
-app.use(cors());
+const User = require('./models/User');
 
-// Routes
-// No auth required routes
-app.use('/auth', authRouter);
-app.use('/common', commonRouter);
-
-// Verify JWT and add user data to next requests
-app.use(auth);
-
-// Auth routes
-app.use('/users', usersRouter);
-app.use('/score', scoreRouter);
-app.use('/messages', messageRouter);
-
-// Handle errors only in development
-if (process.env.CURRENT_ENV === 'development') {
-  app.use(errorHandler);
-} else {
-  app.use((err, req, res, next) => {
-     console.error(err);
-     res.status(500).send('Server Error');
-  });
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
 }
 
-// Start the app
-const path = require("path");
-const PORT = process.env.PORT || 3001;
+// Define API routes here
+const auth = require("./routes/auth");
+const score = require("./routes/score");
+const user = require("./routes/user");
+const connectDb = require("./db/mongoose");
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
   origin: '*'
 }));
 
+// Passport + User
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+// defining routes
+app.use('/auth', auth);
+app.use('/score', score);
+app.use('/user', user);
+
+
+connectDb();
+
+
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
-
-module.exports = app;

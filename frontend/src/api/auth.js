@@ -1,37 +1,13 @@
-import decodeJWT from 'jwt-decode'
-import fetchAPI, { postAPI } from './fetchAPI'
-import { writeToken } from './jwt'
+import { callAPI } from './base';
 
-export function signIn({ email, password }) {
-  return postAPI('/auth/signin', {
-    email,
-    password
-  })
-  .then(json => {
-    writeToken(json.token)
-    return decodeJWT(json.token)
-  })
-}
+// Register user
+export const registerUser = data => callAPI(`/auth/register`, 'post', data);
 
-export function signUp({ email, password, firstName, lastName, contactNumber }) {
-  return postAPI('/auth/signup', {
-    email,
-    password,
-    firstName,
-    lastName,
-    contactNumber
-  })
-  .then(json => {
-    writeToken(json.token)
-    return decodeJWT(json.token)
-  })
-}
+// Login a user
+export const loginUser = data => callAPI(`/auth/login`, 'post', data);
 
-export function fetchCurrentUser() {
-  return fetchAPI('/auth')
-}
+// Remind user's password - send a confirmation link
+export const remindPassword = data => callAPI(`/auth/remind-password`, 'post', data);
 
-export function signOut() {
-  writeToken(null)
-  return Promise.resolve(true)
-}
+// Send user a new password
+export const resetPassword = data => callAPI(`/auth/reset-password`, 'post', data);

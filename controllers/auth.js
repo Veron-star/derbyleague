@@ -1,15 +1,15 @@
-const CONFIG = require('@config/config');
+const CONFIG = require('../config/config');
 
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 // Models
-const User = require('@models/user');
+const User = require('../models/user');
 
 // Utilities
-const { throwError, passError, handleValidationErrors } = require('@util/errors');
-const { sendEmail } = require('@util/notifications/send-email');
+const { throwError, passError, handleValidationErrors } = require('../util/error');
+const { sendEmail } = require('../');
 
 // App
 

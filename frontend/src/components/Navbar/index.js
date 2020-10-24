@@ -5,6 +5,7 @@ import { animateScroll as scroll } from "react-scroll";
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinkS, NavBtn, NavBtnLink } from './NavbarElement';
 
 
+
 const Navbar = ({ toggle }) => {
     const [scrollNav, setScrollNav] = useState(false);
     const changeNav = () => {
@@ -55,7 +56,7 @@ const Navbar = ({ toggle }) => {
                         </NavItem>
                     </NavMenu>
                     <NavBtn>
-                        <NavBtnLink to="signin">Sign In</NavBtnLink>
+                        <NavBtnLink to="/login">Sign In</NavBtnLink>
                     </NavBtn>
                 </NavbarContainer>
             </Nav>

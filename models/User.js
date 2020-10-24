@@ -1,13 +1,6 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-// Models
-const Score = require('@models/score');
-const Message = require('@models/message');
-
-// Tools
-const { throwError, passError, handleValidationErrors } = require('@util/errors');
-
 const userSchema = new mongoose.Schema(
    {
       email: {
