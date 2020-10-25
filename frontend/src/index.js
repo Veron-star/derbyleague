@@ -5,10 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import * as serviceWorker from './serviceWorker';
 
-
-
-
-
 // Render
 ReactDOM.render(
     

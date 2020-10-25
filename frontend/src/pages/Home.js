@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import HeroSection from '../components/HeroSection';
-import InfoSection from '../components/InfoSection';
-import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from '../components/InfoSection/Data';
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
+import HeroSection from '../components/Dashboard/HeroSection';
+import InfoSection from '../components/Dashboard/InfoSection';
+import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from '../components/Dashboard/InfoSection/Data';
+import Navbar from '../components/Dashboard/Navbar';
+import Sidebar from '../components/Dashboard/Sidebar';
 import ScrollToTop from '../components/ScrollToTop';
 
 const Home = () => {

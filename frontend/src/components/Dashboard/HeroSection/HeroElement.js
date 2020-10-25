@@ -18,7 +18,7 @@ export const HeroContainer = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%),
+        background: linear-gradient(rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.6) 100%),
         linear-gradient(rgba(0,0,0,0.2) 0%, transparent 100%);
         z-index: 2;
     }
@@ -56,21 +56,21 @@ export const HeroContent = styled.div`
 
 export const HeroH1 = styled.h1`
     color: #fff;
-    font-size: 48px;
+    font-size: 55px;
     text-align: center;
 
     @media screen and (max-width: 768px) {
-        font-size: 40px;
+        font-size: 45px;
     }
     @media screen and (max-width: 480px) {
-        font-size: 32px;
+        font-size: 35px;
     }
 `;
 
 export const HeroP = styled.p`
     margin-top: 24px;
     color: #fff;
-    font-size: 26px;
+    font-size: 30px;
     text-align: center;
     max-width: 600px;
 
@@ -91,11 +91,11 @@ export const HeroBtnWrapper = styled.div`
 
 export const ArrowForward = styled(MdArrowForward)`
     margin-left: 8px;
-    font-size: 30px;
+    font-size: 40px;
 `;
 
 export const ArrowRight = styled(MdKeyboardArrowRight)`
     margin-left: 8px;
-    font-size: 30px;
+    font-size: 40px;
 `;
 
