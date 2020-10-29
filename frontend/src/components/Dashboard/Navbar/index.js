@@ -29,7 +29,7 @@ const Navbar = ({ toggle }) => {
         <IconContext.Provider value={{ color: "#fff" }}>
             <Nav scrollNav={scrollNav}>
                 <NavbarContainer>
-                    <NavLogo to='/' onClick={toggleHome}>DERBY</NavLogo>
+                    <NavLogo to='/' onClick={toggleHome}>DERBY:LEAGUE</NavLogo>
                     <MobileIcon onClick={toggle}>
                         <FaBars />
                     </MobileIcon>
@@ -52,7 +52,7 @@ const Navbar = ({ toggle }) => {
                         <NavItem>
                             <NavLinkS to="signup"
                             smooth={true} duration={500} spy={true} exact="true" offset={-80} 
-                            >Sign Up</NavLinkS>
+                            >Register</NavLinkS>
                         </NavItem>
                     </NavMenu>
                     <NavBtn>

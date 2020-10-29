@@ -1,121 +1,40 @@
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import uniqueValidator from "mongoose-unique-validator";
 
-const userSchema = new mongoose.Schema(
-   {
-      email: {
-         type: String,
-         unique: true,
-         required: true,
-         trim: true,
-         lowercase: true
-      },
-      password: {
-         type: String,
-         required: true,
-         minlength: 8,
-         trim: true
-      },
-      firstName: {
-         type: String,
-         required: true,
-         minlength: 2
-      },
-      lastName: {
-         type: String,
-         required: true,
-         minlength: 2
-      },
-      dateOfBirth: {
-         type: Date,
-         required: true
-      },
-      phone: {
-         type: String,
-         required: true,
-         minlength: 2,
-         maxlength: 20
-      },
-      picture: {
-         type: String,
-         required: true,
-         minlength: 2
-      },
-      postcode: {
-         type: String,
-         required: true,
-         minlength: 2
-      },
-      city: {
-         type: String,
-         required: true,
-         minlength: 2
-      },
-   },
-   {
-      timestamps: true
-   }
-);
+const schema = new mongoose.Schema(
+{
+    email: {type: String, required: true, lowercase: true, index: true,  unique: true},
+    passwordHash: {type: String, required: true},
+    confirmed: { type: Boolean, default: false },
+    confirmationToken: { type: String, default: "" } //---added for confirmation email--save it if new user signs up
+}, {timestamps: true});
 
-// Hash the plain text password before saving
-userSchema.pre('save', async function(next) {
-   const user = this;
+schema.methods.isValidPassword = function isValidPassword(password) 
+{    return bcrypt.compareSync(password, this.passwordHash);   };//---------used during user login
 
-   if (user.isModified('password')) {
-      user.password = await bcrypt.hash(user.password, 8);
-   }
+schema.methods.generateJWT = function generateJWT() 
+{  return jwt.sign(  {   email: this.email, confirmed: this.confirmed  }, process.env.JWT_SECRET    );  };//---------used during user login
 
-   next();
-});
+schema.methods.toAuthJSON = function toAuthJSON() 
+{  return {  email: this.email, confirmed: this.confirmed, token: this.generateJWT()  };    };  //---------used during user login
 
+schema.methods.setPassword = function setPassword(password) 
+{  this.passwordHash = bcrypt.hashSync(password, 10);  };//---------used during new user creation
 
-// Delete all user related accounts, messages when is removed
-userSchema.pre('remove', async function(next) {
-   const user = this;
+schema.methods.setConfirmationToken = function setConfirmationToken() 
+{  this.confirmationToken = this.generateJWT();  }; //--for confirmation email---save it when new user signs up
 
-   await Score.deleteMany({ owner: user._id });
-   await Message.deleteMany({ sender: user._id, recipient: user._id });
-   
-   next();
-});
+schema.methods.generateConfirmationUrl = function generateConfirmationUrl() {
+    return `${process.env.HOST}/confirmation/${this.confirmationToken}`; //------this one is for signup process--send link to confirm
+  };
 
-// Get basic user's fields, delete sensitive fields
-userSchema.methods.getBasic = async function() {
-   const userObj = this.toObject();
+schema.methods.generateResetPasswordLink = function generateResetPasswordLink() 
+ {  return `${process.env.HOST}/reset_password/${this.generateResetPasswordToken()}`;  };
+schema.methods.generateResetPasswordToken = function generateResetPasswordToken() 
+{    return jwt.sign( { _id: this._id }, process.env.JWT_SECRET, { expiresIn: "1h" }   );  };
 
-   delete userObj.password;
-   delete userObj.updatedAt;
+schema.plugin(uniqueValidator, { message: "This email is already taken" });//---------used during new user creation
 
-   // Add stats like accounts and messages details
-   try {
-      const scoreDetails = await this.getScoreDetails();
-      const messagesScore = await this.getMessagesScore();
-
-      userObj.stats = {
-         scoreDetails,
-         messagesScore
-      };
-
-      return userObj;
-   } catch (err) {
-      passError(err);
-   }
-};
-
-
-// Get messages' count
-userSchema.methods.getMessagesCount = async function() {
-   const userObj = this.toObject();
-
-   try {
-      const messagesCount = await Message.countDocuments({ recipient: userObj._id });
-
-      return messagesCount;
-   } catch (err) {
-      passError(err);
-   }
-};
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+export default mongoose.model('User', schema)

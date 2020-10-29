@@ -15,10 +15,10 @@ const onHover = () => {
                 <VideoBg autoPlay loop muted src={Videos} type="Video/mp4" />               
             </HeroBg>
             <HeroContent>
-                <HeroH1>Never Trust 8 Wheels And A Smile</HeroH1>
-                <HeroP>Register today to find your local league and results from SCRIM!</HeroP>
+                <HeroH1>Jamming is: 50% Reaction and 50% Pro-Action.</HeroH1>
+                <HeroP>Roller Derby Can Change Your Life - Make It A Change For The Better!</HeroP>
                 <HeroBtnWrapper>
-                    <Button to="about" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true" smooth={true} duration={500} spy={true} exact="true" offset={-80} >
+                    <Button to="about" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true" smooth={true} duration={500} spy={true} exact="true" offset={-80} > LAUNCH
                          {hover ? <ArrowForward /> : <ArrowRight />}
                     </Button>
                 </HeroBtnWrapper>

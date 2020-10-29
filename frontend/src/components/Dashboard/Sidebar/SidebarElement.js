@@ -39,7 +39,7 @@ export const SidebarContainer = styled.aside`
     export const SidebarMenu = styled.ul`
         display: grid;
         grid-template-column: 1fr;
-        grid-template-rows: repeat(6, 80px);
+        grid-template-rows: repeat(6, 100px);
         text-align: center;
 
         @media screen and (max-width: 480px) {

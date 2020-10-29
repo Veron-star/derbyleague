@@ -12,7 +12,7 @@ export const InfoContainer = styled.div`
 export const InfoWrapper = styled.div`
     display: grid;
     z-index: 1;
-    height: 860px;
+    height: 840px;
     width: 100%;
     max-width: 1100px;
     margin-right: auto;
@@ -45,26 +45,26 @@ export const Column2 = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-    max-width: 580px;
+    max-width: 600px;
     padding-top: 0;
     padding-bottom: 60px;
 `;
 
 export const TopLine = styled.p`
     color: #01bf71;
-    font-size: 30px;
+    font-size: 35px;
     line-height: 16px;
     font-weight: 700;
     letter-spacing: 1.4px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 `;
 
 export const Heading = styled.h1`
     color: #f7f8fa;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
     font-size: 50px;
-    line-height: 1.1;
+    line-height: 1;
     font-weight: 600;
     color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#010606')};
 
@@ -74,11 +74,11 @@ export const Heading = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-    max-width: 440px;
-    margin-bottom: 35px;
-    font-size: 50px;
-    line-height: 100px;
-    color: {({ darkText }) => (darkText ? '#010606' : '#fff')};
+    max-width: 500px;
+    margin-bottom: 50px;
+    font-size: 30px;
+    line-height: 30px;
+    color: ${({ darkText }) => (darkText ? '#010606' : '#fff')};
 `;
 
 export const BtnWrap1 = styled.div`
@@ -87,8 +87,8 @@ export const BtnWrap1 = styled.div`
 `;
 
 export const ImgWrap = styled.div`
-    max-width: 888px;
-    height: 100%;
+    max-width: 800px;
+    height: 99%;
 `;
 
 export const Img = styled.img`
