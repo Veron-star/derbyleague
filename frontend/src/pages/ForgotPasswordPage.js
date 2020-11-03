@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
-import ForgotPasswordForm from "../forms/ForgotPasswordForm";
-import { resetPasswordRequest } from "../../actions/auth";
+import ForgotPasswordForm from "../components/Forms/ForgotPasswordForm";
+import { resetPasswordRequest } from "../actions/auth";
 
 class ForgotPasswordPage extends React.Component
  {  state = {    success: false  }; //if false we show this , if true we display some message--Email has been sent.

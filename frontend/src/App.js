@@ -1,35 +1,46 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from "../src/components/ScrollToTop";
+// import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 
-import Home from './pages/Home';
-import { LoginConnect as LogIn} from '../src/components/Dashboard/Auth/Connect/LoginConnect';
-import { RegisterConnect as Register } from '../src/components/Dashboard/Auth/Connect/RegisterConnect';
-import { LogoutConnect as LogOut } from '../src/components/Dashboard/Auth/Connect/LogoutConnect';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
+import GuestRoute from './components/routes/GuestRoute';
+import Navbar from './components/Dashboard/Navbar';
+import LeaguesPage from './pages/LeaguesPage';
 
-import Leagues from './components/Leagues/index';
-import Footer from './components/Dashboard/Footer/index';
-import Navbar from './components/Dashboard/Navbar/index';
-
-  function App() {
-  return (
+  function App () {
+    return (
     <Router>
       <ScrollToTop />
       <Navbar />
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/login" component={LogIn} />
-        <Route path="/logout" component={LogOut} />
-        <Route path="/register" component={Register} />
-        <Route path="/league" component={Leagues} />
-        
-        <Route path="/footer" component={Footer} />
+        <Route path="/" exact component={HomePage} />
+        <GuestRoute path="/login" component={LoginPage} />
+        <GuestRoute path="/signup" component={SignupPage} />
+        <GuestRoute path="/forgot_password" component={ForgotPasswordPage} />
+        <GuestRoute path="/reset_password/:token" component={ResetPasswordPage} />
+        <GuestRoute path="/leagues" component={LeaguesPage} />
       </Switch>
     </Router>  
-  );
-  }
+    )};
+
+//   App.propTypes = {
+//     location: PropTypes.shape({
+//       pathname: PropTypes.string.isRequired
+//     }).isRequired,
+//     isAuthenticated: PropTypes.bool.isRequired
+//   };
+
+// function mapStateToProps(state) {  return {  isAuthenticated: !!state.user.email  }; }
 
 
+export default App;
+// export default connect(mapStateToProps)(App);
 
-export default App;  
+
  

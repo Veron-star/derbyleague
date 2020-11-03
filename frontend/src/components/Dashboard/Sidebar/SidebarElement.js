@@ -14,8 +14,12 @@ export const SidebarContainer = styled.aside`
     top: 0;
     left: 0;
     transition: 0.3s ease-in-out;
-    opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
-    top: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    opacity: ${({ isOpen }) => (isOpen ? '1000px' : '0')};
+    top: ${({ isOpen }) => (isOpen ? '0' : '-1000px')};
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
     `;
 
     export const CloseIcon = styled(FaTimes)`
@@ -36,7 +40,7 @@ export const SidebarContainer = styled.aside`
         color: #fff;
     `;
 
-    export const SidebarMenu = styled.ul`
+    export const SidebarMenu = styled.div`
         display: grid;
         grid-template-column: 1fr;
         grid-template-rows: repeat(6, 100px);

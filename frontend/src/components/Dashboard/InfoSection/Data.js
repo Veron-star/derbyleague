@@ -60,7 +60,7 @@ export const homeObjFour = {
     buttonLabel: "JOIN",
     imgStart: false,
     img: require('../../../images/img1.jpg'),
-    alt: 'join',
+    alt: require('../../../pages/SignupPage'),
     dark: false,
     primary: false,
     darkText: false,

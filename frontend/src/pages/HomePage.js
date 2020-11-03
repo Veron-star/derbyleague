@@ -6,7 +6,7 @@ import Navbar from '../components/Dashboard/Navbar';
 import Sidebar from '../components/Dashboard/Sidebar';
 import ScrollToTop from '../components/ScrollToTop';
 
-const Home = () => {
+const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
     
     const toggle = () => {
@@ -27,4 +27,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default HomePage;

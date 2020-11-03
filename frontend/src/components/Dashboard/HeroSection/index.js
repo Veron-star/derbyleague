@@ -5,6 +5,7 @@ import { Button } from '../../ButtonElement';
 
 const HeroSection = () => {
 const [hover, setHover] = useState(false);
+
 const onHover = () => {
     setHover(!hover)
 }

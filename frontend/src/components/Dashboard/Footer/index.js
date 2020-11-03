@@ -6,26 +6,18 @@ const Footer = () => {
     return (
         <FooterContainer>
             <FooterWrap>
-                <FooterLinksContainer>
-                    <FooterLinksWrapper>
-                        <FooterLinkItems>
-                            <FooterLinkTitle>Contact Us</FooterLinkTitle>
-                            <FooterLink to="/">Enquire</FooterLink>
-                        </FooterLinkItems>
-                    </FooterLinksWrapper>
-                </FooterLinksContainer>
                 <SocialMedia>
                     <SocialMediaWrap>
                         <SocialLogo to="/">DERBY</SocialLogo>
                         <WebsiteRights>All Rights Reserved 2020</WebsiteRights>
                         <SocialIcons>
-                            <SocialIconLink href="//www.facebook.com/" target="_blank" aria-label="FaceBook">
+                            <SocialIconLink href="//www.facebook.com/" target="_blank" aria-label="FaceBook" rel="noopener noreferrer">
                             <FaFacebook />
                             </SocialIconLink>
-                            <SocialIconLink href="//www.instagram.com/" target="_blank" aria-label="Instagram">
+                            <SocialIconLink href="//www.instagram.com/" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
                             <FaInstagram />
                             </SocialIconLink>
-                            <SocialIconLink href="//www.youtube.com/" target="_blank" aria-label="YouTube">
+                            <SocialIconLink href="//www.youtube.com/" target="_blank" aria-label="YouTube" rel="noopener noreferrer">
                             <FaYoutube />
                             </SocialIconLink>
                         </SocialIcons>
