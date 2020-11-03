@@ -1,40 +1,52 @@
-const mongoose = require('mongoose');
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const uniqueValidator = require("mongoose-unique-validator");
+const Mongoose = require('mongoose');
 
-const schema = new mongoose.Schema(
-{
-    email: {type: String, required: true, lowercase: true, index: true,  unique: true},
-    passwordHash: {type: String, required: true},
-    confirmed: { type: Boolean, default: false },
-    confirmationToken: { type: String, default: "" } //---added for confirmation email--save it if new user signs up
-}, {timestamps: true});
+const { Schema } = Mongoose;
 
-schema.methods.isValidPassword = function isValidPassword(password) 
-{    return bcrypt.compareSync(password, this.passwordHash);   };//---------used during user login
+// User Schema
+const UserSchema = new Schema({
+  email: {
+    type: String,
+    required: () => {
+      return this.provider !== 'email' ? false : true;
+    }
+  },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
+  password: {
+    type: String
+  },
+  provider: {
+    type: String,
+    required: true,
+    default: 'email'
+  },
+  googleId: {
+    type: String,
+    unique: true
+  },
+  facebookId: {
+    type: String,
+    unique: true
+  },
+  avatar: {
+    type: String
+  },
+  role: {
+    type: String,
+    default: 'ROLE_MEMBER',
+    enum: ['ROLE_MEMBER', 'ROLE_ADMIN', 'ROLE_MANAGER']
+  },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
+  updated: Date,
+  created: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-schema.methods.generateJWT = function generateJWT() 
-{  return jwt.sign(  {   email: this.email, confirmed: this.confirmed  }, process.env.JWT_SECRET    );  };//---------used during user login
-
-schema.methods.toAuthJSON = function toAuthJSON() 
-{  return {  email: this.email, confirmed: this.confirmed, token: this.generateJWT()  };    };  //---------used during user login
-
-schema.methods.setPassword = function setPassword(password) 
-{  this.passwordHash = bcrypt.hashSync(password, 10);  };//---------used during new user creation
-
-schema.methods.setConfirmationToken = function setConfirmationToken() 
-{  this.confirmationToken = this.generateJWT();  }; //--for confirmation email---save it when new user signs up
-
-schema.methods.generateConfirmationUrl = function generateConfirmationUrl() {
-    return `${process.env.HOST}/confirmation/${this.confirmationToken}`; //------this one is for signup process--send link to confirm
-  };
-
-schema.methods.generateResetPasswordLink = function generateResetPasswordLink() 
- {  return `${process.env.HOST}/reset_password/${this.generateResetPasswordToken()}`;  };
-schema.methods.generateResetPasswordToken = function generateResetPasswordToken() 
-{    return jwt.sign( { _id: this._id }, process.env.JWT_SECRET, { expiresIn: "1h" }   );  };
-
-schema.plugin(uniqueValidator, { message: "This email is already taken" });//---------used during new user creation
-
-module.exports = mongoose.model('User', schema);
+module.exports = Mongoose.model('User', UserSchema);
